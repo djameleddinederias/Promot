@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1058684385835",
+    "firebase_url": "https://promot-54aaf.firebaseio.com",
+    "project_id": "promot-54aaf",
+    "storage_bucket": "promot-54aaf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1058684385835:android:93501d54a3312998b8086e",
+        "android_client_info": {
+          "package_name": "com.promot"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1058684385835-aptm74cfu7f6cumvtin47imdmmlpdg88.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfDo2JBI594ElqN0_35uZtYnoZnZsGnM4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1058684385835-aptm74cfu7f6cumvtin47imdmmlpdg88.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
