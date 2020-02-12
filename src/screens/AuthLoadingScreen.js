@@ -5,8 +5,6 @@ import { theme } from "../core/theme";
 import { FIREBASE_CONFIG } from "../core/config";
 import firebase from "react-native-firebase"
 
-// Initialize Firebase
-firebase.initializeApp(FIREBASE_CONFIG);
 
 const AuthLoadingScreen = ({ navigation }) => {
   firebase.auth().onAuthStateChanged(user => {

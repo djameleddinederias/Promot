@@ -4,6 +4,7 @@ import Logo from "../components/Logo";
 import Header from "../components/Header";
 import Button from "../components/Button";
 import Paragraph from "../components/Paragraph";
+import {loginWithFacebook, googleLogin} from "../api/auth-api" 
 
 
 const HomeScreen = ({ navigation }) => (
@@ -23,8 +24,11 @@ const HomeScreen = ({ navigation }) => (
     >
       Sign Up
     </Button>
-    <Button  onPress={() => console.log("facebook")}>
+    <Button  onPress={() =>loginWithFacebook() }>
       Facebook
+    </Button>
+    <Button  onPress={() =>googleLogin() }>
+      Google
     </Button>
   </Background>
 );

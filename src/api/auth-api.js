@@ -1,7 +1,8 @@
 import firebase from "react-native-firebase";
 import "firebase/auth";
+import { GoogleSignin } from 'react-native-google-signin';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
-import firebaseRn from 'react-native-firebase'
+
 
 export const logoutUser = () => {
   firebase.auth().signOut();
@@ -9,7 +10,7 @@ export const logoutUser = () => {
 
 export const loginWithFacebook = async ()=>{
   try {
-    const result = await LoginManager.logInWithReadPermissions(['public_profile', 'email']);
+    const result = await LoginManager.logInWithPermissions(['public_profile', 'email']);
 
     if (result.isCancelled) {
       // handle this however suites the flow of your app
@@ -30,9 +31,29 @@ export const loginWithFacebook = async ()=>{
     const credential = firebase.auth.FacebookAuthProvider.credential(data.accessToken);
 
     // login with credential
-    const firebaseUserCredential = await firebaseRn.auth().signInWithCredential(credential);
+    const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
 
     console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()))
+  } catch (e) {
+    console.error(e);
+    console.error("hello world")
+  }
+};
+
+export const  googleLogin=  async ()=> {
+  try {
+    // add any configuration settings here:
+    await GoogleSignin.configure();
+
+    const data = await GoogleSignin.signIn();
+    console.error(data)
+
+    // create a new firebase credential with the token
+    const credential = firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken)
+    // login with credential
+    const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
+
+    console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()));
   } catch (e) {
     console.error(e);
   }
