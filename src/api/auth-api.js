@@ -1,6 +1,6 @@
 import firebase from "react-native-firebase";
 import "firebase/auth";
-import { GoogleSignin } from 'react-native-google-signin';
+import { GoogleSignin , statusCodes } from 'react-native-google-signin';
 import { AccessToken, LoginManager } from 'react-native-fbsdk';
 
 
@@ -41,21 +41,35 @@ export const loginWithFacebook = async ()=>{
 };
 
 export const  googleLogin=  async ()=> {
+  GoogleSignin.configure({
+ webClientId: '534721538678-up6pd6s4frb9rdg5tlqi8ehh2hsvn3t3.apps.googleusercontent.com', 
+});
+
   try {
-    // add any configuration settings here:
-    await GoogleSignin.configure();
-
-    const data = await GoogleSignin.signIn();
-    console.error(data)
-
-    // create a new firebase credential with the token
-    const credential = firebase.auth.GoogleAuthProvider.credential(data.idToken, data.accessToken)
-    // login with credential
+    const userInfo = await GoogleSignin.signIn();
+    const credential = firebase.auth.GoogleAuthProvider.credential(userInfo.idToken, userInfo.accessToken)
+      // login with credential
     const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
-
-    console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()));
-  } catch (e) {
-    console.error(e);
+     console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()));
+  } catch (error) {
+    console.log(error)
+    if (error.code === statusCodes.SIGN_IN_CANCELLED) {
+      return {
+          error: "SIGN_IN cancelled"
+        };
+    } else if (error.code === statusCodes.IN_PROGRESS) {
+      return {
+          error: "SIGN_IN in progress"
+        };
+    } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
+      return {
+          error: "MOBILE PHONE DOESN'T HAVE PLAY SERVICES"
+        };
+    } else {
+      return {
+          error: "Uknown ERROR"
+        };
+    }
   }
 };
 
@@ -68,6 +82,7 @@ export const signInUser = async ({ name, email, password }) => {
 
     return {};
   } catch (error) {
+    console.error(error)
     switch (error.code) {
       case "auth/email-already-in-use":
         return {

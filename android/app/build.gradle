@@ -1,5 +1,4 @@
 apply plugin: "com.android.application"
-apply plugin: 'com.google.gms.google-services'
 
 import com.android.build.OutputFile
 
@@ -181,12 +180,12 @@ android {
 }
 
 dependencies {
-    implementation project(':react-native-firebase')
     implementation fileTree(dir: "libs", include: ["*.jar"])
     def multidex_version = "2.0.1"
     implementation 'androidx.multidex:multidex:$multidex_version'
     implementation "com.google.android.gms:play-services-base:16.1.0"
     implementation "com.google.firebase:firebase-core:16.0.9"
+    //implementation 'com.google.firebase:firebase-analytics:17.2.2'
     implementation "com.google.firebase:firebase-auth:17.0.0"
     implementation "com.facebook.react:react-native:+"  // From node_modules
     if (enableHermes) {
@@ -206,3 +205,6 @@ task copyDownloadableDepsToLibs(type: Copy) {
 }
 
 apply from: file("../../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesAppBuildGradle(project)
+
+
+apply plugin: 'com.google.gms.google-services'
