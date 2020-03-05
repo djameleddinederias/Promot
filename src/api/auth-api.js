@@ -33,7 +33,7 @@ export const loginWithFacebook = async ()=>{
     // login with credential
     const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
 
-    console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()))
+    //console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()))
   } catch (e) {
     console.error(e);
     console.error("hello world")
@@ -50,7 +50,7 @@ export const  googleLogin=  async ()=> {
     const credential = firebase.auth.GoogleAuthProvider.credential(userInfo.idToken, userInfo.accessToken)
       // login with credential
     const firebaseUserCredential = await firebase.auth().signInWithCredential(credential);
-     console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()));
+     //console.warn(JSON.stringify(firebaseUserCredential.user.toJSON()));
   } catch (error) {
     console.log(error)
     if (error.code === statusCodes.SIGN_IN_CANCELLED) {

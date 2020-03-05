@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Promot</string>
-    <string name="facebook_app_id">177094573637942</string>
+    <string name="facebook_app_id">132005611550482</string>
+		<string name="fb_login_protocol_scheme">fb132005611550482</string>
 </resources>
